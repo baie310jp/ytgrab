@@ -6,8 +6,8 @@ catalog = {
     ],
     "YOASOBI": [
         ("ZRtdQ81jPUQ", "アイドル"),
-        ("x8VYWazR5mE", "夜に駆ける"),
         ("Y4nEEZwckuU", "群青"),
+        ("OIBODIPC_8Y", "勇者"),
     ],
 }
 

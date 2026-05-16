@@ -32,11 +32,11 @@ def main(format="mp3"):
             raise RuntimeError(f"Video not found or unavailable. ({vid})")
 
         with YoutubeDL(ydl_opts) as ydl:
-            retcode = ydl.download([f"https://www.youtube.com/watch?v={vid}"])
-            if retcode != 0:
-                raise RuntimeError(
-                    f"Downloading failed with non-zero return code. ({vid})"
-                )
+            try:
+                ydl.download([f"https://www.youtube.com/watch?v={vid}"])
+            except Exception as e:
+                print(e)
+                raise RuntimeError(f"Downloading failed. ({vid})")
 
             print(title, artist)
 

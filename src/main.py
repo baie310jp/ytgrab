@@ -1,3 +1,4 @@
+import argparse
 import os
 
 from mutagen.easyid3 import EasyID3
@@ -42,4 +43,7 @@ def main(format="mp3"):
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("format", nargs="?", choices=["mp3", "mp4"], default="mp3")
+    args = parser.parse_args()
+    main(args.format)

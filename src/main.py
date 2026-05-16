@@ -46,7 +46,7 @@ def main(format="mp3"):
 
                 artwork_file_path = f"output/mp3/{vid}.jpg"
 
-                with request.urlopen(f"https://img.youtube.com/vi/{vid}/0.jpg") as r:
+                with request.urlopen(f"https://img.youtube.com/vi/{vid}/0.jpg", timeout=10) as r:
                     data = r.read()
                     with open(artwork_file_path, mode="wb") as o:
                         o.write(data)

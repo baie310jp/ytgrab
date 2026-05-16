@@ -52,7 +52,12 @@ def main(format="mp3"):
                         o.write(data)
 
                 with Image.open(artwork_file_path) as img:
-                    resized = img.resize((300, 300))
+                    width, height = img.size
+                    crop_size = min(width, height)
+                    left = (width - crop_size) // 2
+                    top = (height - crop_size) // 2
+                    cropped = img.crop((left, top, left + crop_size, top + crop_size))
+                    resized = cropped.resize((300, 300))
                     resized.save(artwork_file_path)
 
                 with open(artwork_file_path, mode="rb") as r:

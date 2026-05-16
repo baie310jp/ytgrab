@@ -1,6 +1,7 @@
 import os
 
 from yt_dlp import YoutubeDL
+import requests
 
 from config import ydl_opts_mp3, ydl_opts_mp4
 from videos import videos
@@ -26,12 +27,16 @@ def main(format="mp3"):
         if os.path.isfile(file_path):
             continue
 
-        url = f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg"
+        resp = requests.head(f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg")
+        if resp.status_code != 200:
+            raise RuntimeError(f"Video not found or unavailable. ({vid})")
 
         with YoutubeDL(ydl_opts) as ydl:
             retcode = ydl.download([f"https://www.youtube.com/watch?v={vid}"])
             if retcode != 0:
                 raise RuntimeError(f"Downloading failed with non-zero return code. ({vid})")
+
+            print(title, artist)
 
 
 if __name__ == "__main__":

@@ -33,7 +33,8 @@ def main(format="mp3"):
                 print(e)
                 raise RuntimeError(f"Downloading failed. ({vid})")
 
-            print(title, artist)
+            if format == "mp3":
+                print(title, artist)
 
 
 if __name__ == "__main__":

@@ -10,4 +10,8 @@ ydl_opts_mp3 = {
     "outtmpl": None,
 }
 
-ydl_opts_mp4 = {}
+ydl_opts_mp4 = {
+    "format": "bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]/best[height<=720]/best",
+    "merge_output_format": "mp4",
+    "outtmpl": None,
+}

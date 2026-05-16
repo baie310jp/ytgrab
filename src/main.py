@@ -2,6 +2,7 @@ import argparse
 import os
 
 from mutagen.easyid3 import EasyID3
+from mutagen.id3 import ID3, APIC
 from yt_dlp import YoutubeDL
 
 from config import ydl_opts_mp3, ydl_opts_mp4
@@ -39,6 +40,9 @@ def main(format="mp3"):
                 tags = EasyID3(file_path)
                 tags["title"] = title
                 tags["artist"] = artist
+                tags.save()
+
+                tags = ID3(file_path)
                 tags.save()
 
 

@@ -21,6 +21,9 @@ def main(format="mp3"):
         if os.path.isfile(file_path):
             continue
 
+        url = f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg"
+        print(url)
+
 
 if __name__ == "__main__":
     main()

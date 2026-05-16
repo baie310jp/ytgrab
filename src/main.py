@@ -1,5 +1,9 @@
+from videos import videos
+
+
 def main():
-    print("Hello from ytgrab!")
+    for item in videos:
+        print(item)
 
 
 if __name__ == "__main__":

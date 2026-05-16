@@ -63,8 +63,9 @@ def main(format="mp3"):
                 with open(artwork_file_path, mode="rb") as r:
                     data = r.read()
                     tags = ID3(file_path)
-                    tags.add(APIC(mime="image/jpeg", type=3, data=data))
-                    tags.save()
+                    tags.delall("APIC")
+                    tags.add(APIC(mime="image/jpeg", type=3, desc="Album cover", data=data))
+                    tags.save(v2_version=3)
 
                 os.remove(artwork_file_path)
 

@@ -34,7 +34,9 @@ def main(format="mp3"):
         with YoutubeDL(ydl_opts) as ydl:
             retcode = ydl.download([f"https://www.youtube.com/watch?v={vid}"])
             if retcode != 0:
-                raise RuntimeError(f"Downloading failed with non-zero return code. ({vid})")
+                raise RuntimeError(
+                    f"Downloading failed with non-zero return code. ({vid})"
+                )
 
             print(title, artist)
 

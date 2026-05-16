@@ -1,8 +1,10 @@
 import argparse
 import os
+from urllib import request
 
 from mutagen.easyid3 import EasyID3
 from mutagen.id3 import ID3, APIC
+from PIL import Image
 from yt_dlp import YoutubeDL
 
 from config import ydl_opts_mp3, ydl_opts_mp4
@@ -42,8 +44,24 @@ def main(format="mp3"):
                 tags["artist"] = artist
                 tags.save()
 
-                tags = ID3(file_path)
-                tags.save()
+                artwork_file_path = f"output/mp3/{vid}.jpg"
+
+                with request.urlopen(f"https://img.youtube.com/vi/{vid}/0.jpg") as r:
+                    data = r.read()
+                    with open(artwork_file_path, mode="wb") as o:
+                        o.write(data)
+
+                with Image.open(artwork_file_path) as img:
+                    resized = img.resize((300, 300))
+                    resized.save(artwork_file_path)
+
+                with open(artwork_file_path, mode="rb") as r:
+                    data = r.read()
+                    tags = ID3(file_path)
+                    tags.add(APIC(mime="image/jpeg", type=3, data=data))
+                    tags.save()
+                
+                os.remove(artwork_file_path)
 
 
 if __name__ == "__main__":

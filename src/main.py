@@ -2,8 +2,8 @@ from videos import videos
 
 
 def main():
-    for item in videos:
-        print(item)
+    for video in videos:
+        print(video)
 
 
 if __name__ == "__main__":

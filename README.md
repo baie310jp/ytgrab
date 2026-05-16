@@ -2,6 +2,10 @@
 Download YouTube videos as MP3 or MP4 — auto-embeds title, artist, and artwork
 
 ```zsh
+cp -p src/videos.py.example src/videos.py
+```
+
+```zsh
 uv sync
 ```
 

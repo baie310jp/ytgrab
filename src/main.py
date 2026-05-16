@@ -1,7 +1,6 @@
 import os
 
 from yt_dlp import YoutubeDL
-import requests
 
 from config import ydl_opts_mp3, ydl_opts_mp4
 from videos import videos
@@ -16,20 +15,16 @@ def main(format="mp3"):
         if format == "mp3":
             output_vid = f"output/mp3/{vid}"
             file_path = output_vid + ".mp3"
-            ydl_opts = ydl_opts_mp3
-            ydl_opts["outtmpl"] = output_vid
+            base_ydl_opts = ydl_opts_mp3
         else:
             output_vid = f"output/mp4/{vid}"
             file_path = output_vid + ".mp4"
-            ydl_opts = ydl_opts_mp4
-            ydl_opts["outtmpl"] = output_vid
+            base_ydl_opts = ydl_opts_mp4
+
+        ydl_opts = {**base_ydl_opts, "outtmpl": output_vid}
 
         if os.path.isfile(file_path):
             continue
-
-        resp = requests.head(f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg")
-        if resp.status_code != 200:
-            raise RuntimeError(f"Video not found or unavailable. ({vid})")
 
         with YoutubeDL(ydl_opts) as ydl:
             try:

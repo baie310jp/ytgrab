@@ -60,7 +60,7 @@ def main(format="mp3"):
                     tags = ID3(file_path)
                     tags.add(APIC(mime="image/jpeg", type=3, data=data))
                     tags.save()
-                
+
                 os.remove(artwork_file_path)
 
 

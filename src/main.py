@@ -3,7 +3,7 @@ import os
 from urllib import request
 
 from mutagen.easyid3 import EasyID3
-from mutagen.id3 import ID3, APIC
+from mutagen.id3 import APIC, ID3
 from PIL import Image
 from yt_dlp import YoutubeDL
 
@@ -36,7 +36,7 @@ def main(format="mp3"):
                 ydl.download([f"https://www.youtube.com/watch?v={vid}"])
             except Exception as e:
                 print(e)
-                raise RuntimeError(f"Downloading failed. ({vid})")
+                raise RuntimeError(f"Downloading failed. ({vid})") from e
 
             if format == "mp3":
                 tags = EasyID3(file_path)

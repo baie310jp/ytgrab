@@ -27,3 +27,18 @@ uv run python src/main.py mp3
 ```zsh
 uv run python src/main.py mp4
 ```
+
+## Memo
+
+### Ruff
+```zsh
+uv run ruff check .
+```
+
+```zsh
+uv run ruff check --fix .
+```
+
+```zsh
+uv run ruff format .
+```

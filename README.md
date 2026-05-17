@@ -17,6 +17,8 @@ uv sync
 uv run python src/main.py
 ```
 
+or
+
 ```zsh
 uv run python src/main.py mp3
 ```

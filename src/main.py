@@ -46,7 +46,9 @@ def main(format="mp3"):
 
                 artwork_file_path = f"output/mp3/{vid}.jpg"
 
-                with request.urlopen(f"https://img.youtube.com/vi/{vid}/0.jpg", timeout=10) as r:
+                with request.urlopen(
+                    f"https://img.youtube.com/vi/{vid}/0.jpg", timeout=10
+                ) as r:
                     data = r.read()
                     with open(artwork_file_path, mode="wb") as o:
                         o.write(data)
@@ -64,7 +66,9 @@ def main(format="mp3"):
                     data = r.read()
                     tags = ID3(file_path)
                     tags.delall("APIC")
-                    tags.add(APIC(mime="image/jpeg", type=3, desc="Album cover", data=data))
+                    tags.add(
+                        APIC(mime="image/jpeg", type=3, desc="Album cover", data=data)
+                    )
                     tags.save(v2_version=3)
 
                 os.remove(artwork_file_path)
